@@ -10,11 +10,13 @@ function App() {
   const [loading, setLoading] = useState(true); // ⬅️ new
 
   useEffect(() => {
-    fetch('http://localhost:3000/api/user', { credentials: 'include' })
+    fetch('https://airatareca.onrender.com/api/user', {
+      credentials: 'include',
+    })
       .then((res) => res.json())
       .then((data) => {
         setIsAuthenticated(data.loggedIn);
-        setLoading(false); // ⬅️ only update after check
+        setLoading(false);
       })
       .catch(() => {
         setIsAuthenticated(false);

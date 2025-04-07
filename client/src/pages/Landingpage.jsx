@@ -20,8 +20,7 @@ const LandingPage = () => {
   const isSmallScreen = useMediaQuery(theme.breakpoints.down('md'));
 
   const handleGoogleLogin = () => {
-    // Temporary placeholder until backend is ready
-    window.location.href = 'http://localhost:3000/auth/google';
+    window.location.href = 'https://airatareca.onrender.com/auth/google';
   };
 
   return (

@@ -26,7 +26,7 @@ app.use(
     cookie: {
       httpOnly: true,
       secure: true, // must be false in local dev (no HTTPS)
-      sameSite: 'lax',
+      sameSite: 'none',
     },
   })
 );
@@ -40,7 +40,7 @@ passport.use(
     {
       clientID: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-      callbackURL: 'http://localhost:3000/auth/google/callback',
+      callbackURL: 'https://airatareca.onrender.com/auth/google/callback',
     },
     function (accessToken, refreshToken, profile, done) {
       return done(null, profile);
