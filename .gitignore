@@ -11,3 +11,4 @@ client/.env
 .DS_Store
 .env.local
 .env
+*.env
