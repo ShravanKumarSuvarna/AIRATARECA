@@ -1,8 +1,10 @@
-import { Navigate, useOutletContext } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 
-export default function ProtectedRoute({ children }) {
-  const { isAuthenticated } = useOutletContext();
-
-  if (!isAuthenticated) return <Navigate to="/" />;
+const ProtectedRoute = ({ isAuthenticated, children }) => {
+  if (!isAuthenticated) {
+    return <Navigate to="/" />;
+  }
   return children;
-}
+};
+
+export default ProtectedRoute;
