@@ -70,13 +70,19 @@ app.get(
 app.get(
   '/auth/google/callback',
   passport.authenticate('google', {
-    successRedirect: `${process.env.CLIENT_URL}/dashboard`,
     failureRedirect: `${process.env.CLIENT_URL}`,
-  })
+  }),
+  (req, res) => {
+    console.log('🔐 Logged in user:', req.user);
+    console.log('🍪 Session ID:', req.sessionID);
+    res.redirect(`${process.env.CLIENT_URL}/dashboard`);
+  }
 );
 
 // Check if user is authenticated
 app.get('/api/user', (req, res) => {
+  console.log('💡 Cookies:', req.cookies);
+  console.log('🔑 Session ID:', req.sessionID);
   if (req.isAuthenticated()) {
     console.log('✅ User is logged in');
     res.json({ loggedIn: true, user: req.user });
