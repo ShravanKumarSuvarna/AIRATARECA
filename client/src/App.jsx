@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { HashRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import LandingPage from './pages/Landingpage';
 import DashboardPage from './pages/DashboardPage';
 import AboutPage from './pages/AboutPage';
