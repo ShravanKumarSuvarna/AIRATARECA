@@ -28,7 +28,14 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" element={<LandingPage />} />
-        <Route path="/dashboard" element={<DashboardPage />} />
+        <Route
+          path="/dashboard"
+          element={
+            <ProtectedRoute isAuthenticated={isAuthenticated}>
+              <DashboardPage />
+            </ProtectedRoute>
+          }
+        />
         <Route
           path="/about"
           element={

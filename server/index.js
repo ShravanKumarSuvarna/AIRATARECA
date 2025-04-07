@@ -79,8 +79,10 @@ app.get(
 app.get('/api/user', (req, res) => {
   if (req.isAuthenticated()) {
     res.json({ loggedIn: true, user: req.user });
+    console.log('True is loged in');
   } else {
     res.json({ loggedIn: false });
+    console.log('False is loged in');
   }
 });
 
