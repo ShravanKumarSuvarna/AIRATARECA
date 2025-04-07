@@ -7,6 +7,8 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
+console.log('CLIENT_URL used in backend:', process.env.CLIENT_URL);
+
 const app = express();
 const port = process.env.PORT || 3000;
 
