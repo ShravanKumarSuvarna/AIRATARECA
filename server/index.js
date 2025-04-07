@@ -7,12 +7,12 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 // CORS
 app.use(
   cors({
-    origin: 'http://localhost:5173',
+    origin: process.env.CLIENT_URL,
     credentials: true,
   })
 );
@@ -25,7 +25,7 @@ app.use(
     saveUninitialized: false,
     cookie: {
       httpOnly: true,
-      secure: false, // Set to true in production with HTTPS
+      secure: false, // true if your backend is served over HTTPS
       sameSite: 'lax',
     },
   })
@@ -40,10 +40,11 @@ passport.use(
     {
       clientID: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-      callbackURL: 'http://localhost:3000/auth/google/dashboard',
+      callbackURL: 'http://localhost:3000/auth/google/dashboard', // Keep localhost if backend is local
+      // Replace with production URL if hosted
+      // callbackURL: 'https://your-backend-url.com/auth/google/dashboard',
     },
     function (accessToken, refreshToken, profile, done) {
-      // Save the profile to the session (mock user handling)
       return done(null, profile);
     }
   )
@@ -69,8 +70,8 @@ app.get(
 app.get(
   '/auth/google/dashboard',
   passport.authenticate('google', {
-    successRedirect: 'http://localhost:5173/dashboard',
-    failureRedirect: 'http://localhost:5173',
+    successRedirect: `${process.env.CLIENT_URL}/dashboard`,
+    failureRedirect: `${process.env.CLIENT_URL}`,
   })
 );
 
@@ -87,7 +88,7 @@ app.get('/api/user', (req, res) => {
 app.get('/logout', (req, res) => {
   req.logout(() => {
     res.clearCookie('connect.sid');
-    res.redirect('http://localhost:5173');
+    res.redirect(process.env.CLIENT_URL);
   });
 });
 
