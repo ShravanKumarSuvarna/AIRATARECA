@@ -29,7 +29,7 @@ app.use(
     saveUninitialized: false,
     cookie: {
       httpOnly: true,
-      secure: true, // must be false in local dev (no HTTPS)
+      secure: true, // only ture when deployed else false
       sameSite: 'none',
     },
   })
@@ -68,28 +68,28 @@ app.get(
   passport.authenticate('google', { scope: ['profile', 'email'] })
 );
 
-// Google callback route (make sure this matches Google console)
+// Google callback route
 app.get(
   '/auth/google/callback',
   passport.authenticate('google', {
     failureRedirect: `${process.env.CLIENT_URL}`,
   }),
   (req, res) => {
-    console.log('🔐 Logged in user:', req.user);
-    console.log('🍪 Session ID:', req.sessionID);
+    console.log('Logged in user:', req.user);
+    console.log('Session ID:', req.sessionID);
     res.redirect(`${process.env.CLIENT_URL}/dashboard`);
   }
 );
 
-// Check if user is authenticated
+// Check user authentication
 app.get('/api/user', (req, res) => {
-  console.log('💡 Cookies:', req.cookies);
-  console.log('🔑 Session ID:', req.sessionID);
+  console.log('Cookies:', req.cookies);
+  console.log('Session ID:', req.sessionID);
   if (req.isAuthenticated()) {
-    console.log('✅ User is logged in');
+    console.log('User is logged in');
     res.json({ loggedIn: true, user: req.user });
   } else {
-    console.log('❌ User is not logged in');
+    console.log('User is not logged in');
     res.json({ loggedIn: false });
   }
 });
@@ -110,7 +110,7 @@ app.get('/', (req, res) => {
 // Start server
 app.listen(port, () => {
   console.log(
-    `✅ Server is running at ${
+    `Server is running at ${
       process.env.SERVER_URL || 'http://localhost:' + port
     }`
   );

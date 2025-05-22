@@ -147,13 +147,16 @@ const AboutPage = () => {
               fontSize: { xs: '0.9rem', sm: '1rem' },
             }}
           >
-            We at Frostify AI Robotics are dedicated to revolutionizing waste
-            management with the power of AI and robotics. Our autonomous rover
-            is designed to clean environments, detect pollution sources, and
-            adapt to its surroundings, ensuring a smarter, cleaner world. With
-            cutting-edge technology and sustainable innovation, we aim to reduce
-            environmental impact and raise awareness about responsible waste
-            handling.
+            At AIRAT SYSTEMS LLP, we are transforming agriculture with the power
+            of AI and robotics. Our ArecaNut SortoBot is an intelligent,
+            automated sorting machine designed to identify and classify
+            different grades of areca nuts with precision and efficiency. By
+            integrating advanced computer vision and machine learning, the
+            SortoBot supports farmers and agro-industries in enhancing
+            productivity, reducing manual labor, and ensuring consistent
+            quality. With our commitment to innovation and sustainability, we
+            aim to modernize traditional farming practices and add value to the
+            areca nut supply chain.
           </Typography>
         </Paper>
 
